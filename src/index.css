@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #EAB308; /* Gold */
+  --color-secondary: #0F172A; /* Navy */
+  --color-dark-bg: #0F172A;
+  --color-alt-bg: #1E293B;
+  --color-text-main: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  
+  --font-headlines: 'Inter', sans-serif;
+  --font-technical: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-text-main font-technical selection:bg-primary selection:text-black;
+    overflow-x: hidden;
+    cursor: default !important; /* Force default cursor */
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-[1400px] mx-auto px-6 md:px-12 lg:px-24;
+  }
+
+  .finance-grid {
+    background-image: 
+      linear-gradient(to right, rgba(234, 179, 8, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(234, 179, 8, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .capital-card {
+    @apply bg-alt-bg border border-white/5 backdrop-blur-xl hover:border-primary/40 transition-all duration-500 rounded-sm shadow-2xl;
+  }
+
+  .ledger-line {
+    @apply w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent my-10;
+  }
+
+  .capital-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#FDE68A] to-primary;
+    background-size: 300% 300%;
+    animation: gradient 8s ease infinite;
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 hover:bg-primary transition-colors;
+}
+
+/* Lenis Smooth Scroll - Keeping it but ensuring it doesn't affect cursor */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
